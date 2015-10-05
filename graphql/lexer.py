@@ -143,31 +143,38 @@ class GraphQLLexer(object):
         return t
 
     def t_FRAGMENT(self, t):
-        'fragment'
+        r'fragment[^_0-9A-Za-z:]+'
+        t.value = 'fragment'
         return t
 
     def t_QUERY(self, t):
-        'query'
+        r'query[^_0-9A-Za-z:]+'
+        t.value = 'query'
         return t
 
     def t_MUTATION(self, t):
-        'mutation'
+        r'mutation[^_0-9A-Za-z:]+'
+        t.value = 'mutation'
         return t
 
     def t_ON(self, t):
-        'on'
+        r'on[^_0-9A-Za-z:]+'
+        t.value = 'on'
         return t
 
     def t_TRUE(self, t):
-        'true'
+        r'true[^_0-9A-Za-z:]+'
+        t.value = 'true'
         return t
 
     def t_FALSE(self, t):
-        'false'
+        r'false[^_0-9A-Za-z:]+'
+        t.value = 'false'
         return t
 
     def t_NULL(self, t):
-        'null'
+        r'null[^_0-9A-Za-z:]+'
+        t.value = 'null'
         return t
 
     def t_error(self, t):

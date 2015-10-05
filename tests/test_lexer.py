@@ -42,10 +42,11 @@ class GraphQLLexerTest(TestCase):
             self.assert_output(self.lexer.input(name), [('NAME', name)])
 
     def test_reserved_words(self):
-        reserved = ('fragment', 'query', 'mutation', 'on',
-                    'true', 'false', 'null')
+        reserved = ('fragment ', 'query ', 'mutation ', 'on ',
+                    'true ', 'false ', 'null ')
         for word in reserved:
-            self.assert_output(self.lexer.input(word), [(word.upper(), word)])
+            self.assert_output(self.lexer.input(word),
+                               [(word.strip().upper(), word.strip())])
 
     def test_int(self):
         for val in ('0', '-0', '42', '-42'):
@@ -91,4 +92,3 @@ class GraphQLLexerTest(TestCase):
         for i, t in enumerate(self.lexer.input('1\n  3\n    5\n')):
             self.assertEqual(i + 1, t.lineno)
             self.assertEqual(i * 2 + 1, self.lexer.find_column(t))
-
