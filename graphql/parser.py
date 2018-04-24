@@ -431,10 +431,10 @@ class GraphQLParser(object):
     def p_value(self, p):
         """
         value : variable
-              | NULL
               | INT_VALUE
               | FLOAT_VALUE
               | STRING_VALUE
+              | null_value
               | boolean_value
               | enum_value
               | list_value
@@ -444,10 +444,10 @@ class GraphQLParser(object):
 
     def p_const_value(self, p):
         """
-        const_value : NULL
-                    | INT_VALUE
+        const_value : INT_VALUE
                     | FLOAT_VALUE
                     | STRING_VALUE
+                    | null_value
                     | boolean_value
                     | enum_value
                     | const_list_value
@@ -459,6 +459,12 @@ class GraphQLParser(object):
         """
         boolean_value : TRUE
                       | FALSE
+        """
+        p[0] = p[1]
+
+    def p_null_value(self, p):
+        """
+        null_value : NULL
         """
         p[0] = p[1]
 
